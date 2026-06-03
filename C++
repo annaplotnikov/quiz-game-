@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cctype>
+
+using namespace std;
+
+struct Question {
+    string text;
+    vector<string> options;
+    char correct; // A, B, C, D
+};
+
+vector<Question> questions = {
+    {"What is the capital of France?", {"Berlin", "Madrid", "Paris", "Lisbon"}, 'C'},
+    {"Which language is primarily used for web development?", {"C++", "Python", "JavaScript", "Java"}, 'C'},
+    {"What does CPU stand for?", {"Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Core Processing Unit"}, 'A'},
+    {"Who wrote 'Romeo and Juliet'?", {"Charles Dickens", "Jane Austen", "Mark Twain", "William Shakespeare"}, 'D'},
+    {"What is the largest ocean on Earth?", {"Atlantic", "Indian", "Arctic", "Pacific"}, 'D'}
+};
+
+int main() {
+    int score = 0;
+    cout << "\n========================================";
+    cout << "\n🎮 QUIZ GAME — 5 questions";
+    cout << "\n========================================\n";
+    for (size_t i = 0; i < questions.size(); i++) {
+        Question& q = questions[i];
+        cout << "\nQ" << i+1 << ": " << q.text << "\n";
+        for (size_t j = 0; j < q.options.size(); j++) {
+            cout << "   " << char('A' + j) << ". " << q.options[j] << "\n";
+        }
+        cout << "Your answer (A/B/C/D): ";
+        char answer;
+        cin >> answer;
+        answer = toupper(answer);
+        if (answer == q.correct) {
+            cout << "✅ Correct!\n";
+            score++;
+        } else {
+            cout << "❌ Wrong! The correct answer was " << q.correct << ".\n";
+        }
+    }
+    cout << "\n========================================\n";
+    cout << "🎉 Your score: " << score << "/" << questions.size() << "\n";
+    if (score == (int)questions.size()) cout << "🌟 Perfect! You're a genius!\n";
+    cout << "========================================\n";
+    return 0;
+}
