@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+"""Quiz Game — multiple choice"""
+
+questions = [
+    {"question": "What is the capital of France?", "options": ["A. Berlin", "B. Madrid", "C. Paris", "D. Lisbon"], "answer": "C"},
+    {"question": "Which language is primarily used for web development?", "options": ["A. C++", "B. Python", "C. JavaScript", "D. Java"], "answer": "C"},
+    {"question": "What does CPU stand for?", "options": ["A. Central Processing Unit", "B. Computer Personal Unit", "C. Central Program Utility", "D. Core Processing Unit"], "answer": "A"},
+    {"question": "Who wrote 'Romeo and Juliet'?", "options": ["A. Charles Dickens", "B. Jane Austen", "C. Mark Twain", "D. William Shakespeare"], "answer": "D"},
+    {"question": "What is the largest ocean on Earth?", "options": ["A. Atlantic", "B. Indian", "C. Arctic", "D. Pacific"], "answer": "D"},
+]
+
+def run_quiz():
+    score = 0
+    print("\n" + "="*40)
+    print("🎮 QUIZ GAME — 5 questions")
+    print("="*40)
+    for i, q in enumerate(questions, 1):
+        print(f"\nQ{i}: {q['question']}")
+        for opt in q['options']:
+            print(f"   {opt}")
+        answer = input("Your answer (A/B/C/D): ").upper()
+        if answer == q['answer']:
+            print("✅ Correct!")
+            score += 1
+        else:
+            print(f"❌ Wrong! The correct answer was {q['answer']}.")
+    print("\n" + "="*40)
+    print(f"🎉 Your score: {score}/{len(questions)}")
+    if score == len(questions):
+        print("🌟 Perfect! You're a genius!")
+    print("="*40)
+
+if __name__ == "__main__":
+    run_quiz()
